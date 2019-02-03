@@ -21,11 +21,20 @@ var notASelfBot = function() {
 			case "how2cam":
 			case String(cmd.match(/^(?=.*?\how\b)(?=.*?\bcamera\b)(?=.*?\bvc\b).*$/g)):
 			case "!cam":
-				var msg =   "Click CTRL+SHIFT+I on the discord client, go to the Console tab, enter this code at the bottom and click enter.```css\n"+
-							"Object.values(webpackJsonp.push([[],{},[['a']]])).forEach((m,i) => {\n"+
-							"    if(m.exports && m.exports.isDeveloper!==undefined)\n"+
-							"        Object.defineProperty(m.exports, 'isDeveloper', { value: 1 });\n"+
-							"});```";
+				"Click CTRL+SHIFT+I on the discord client, go to the Console tab, enter this code at the bottom and click enter.```css\n"+
+				"function enableDev() {\n"+
+				"    const modules = webpackJsonp.push([[], {a: (m, e, t) => m.exports = t.c},[ ['a'] ]]);\n"+
+				"    for (const id in modules) {\n"+
+				"        const m = modules[id];\n"+
+				"        if (!m.exports) continue;\n"+
+				"        if (m.exports.isDeveloper !== undefined) {\n"+
+				"            Object.defineProperty(m.exports, 'isDeveloper', { configurable: true, writable: true, value: 1 });\n"+
+				"            break;\n"+
+				"        }\n"+
+				"    }\n"+
+				"}\n"+
+				"enableDev();\n"+
+				" ```";
 				if (use == true){
 					sendMsg(cid, msg);
 					use = false;
