@@ -1,6 +1,6 @@
 //META { "name": "notASelfBot" } *//
 
-var discordBot = function() {
+var notASelfBot = function() {
 
 	var onChatMsg,onSendMsg,sendMsg,cancels = [];
 	sendMsg = (cid,msg) => {
